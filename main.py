@@ -1,3 +1,34 @@
+# Create 12+ Book objects and store in list(library)
+# Create program entry point with menu and ask user for menu selection, validate selection
+# Define search():
+    # Can search by author or title keywords
+        # Print:
+            # Selected book info
+            # Invalid choice
+# Define checkout():
+    # Check book status
+    # If checked out
+        # Print message
+    # If available:
+        # Set status to checked out
+        # Set due date for 2 weeks out
+        # Call book.degrade()
+# Define return(book):  Brendan
+    # Return_stack =[ ]
+    # Print a list of checked out books
+    # Ask user to select their book
+    # Add book to return_stack
+    # Loop: Check condition of books in returns_stack
+        # If condition is below threshold
+        # Pop from returns_stack
+        # Remove book object from original list
+        # If condition above threshold:
+        # Update due date to null
+        # Update book status to On Shelf
+
+
+# ==================================================================================================================== #
+
 from Book import *
 
 # ==================================================================================================================== #
@@ -6,6 +37,16 @@ from Book import *
 
 b1 = Book("Of Mice and Men", "John Steinbeck", "On Shelf", 10, None)
 b2 = Book("Macbeth", "William Shakespeare", "On Shelf", 8, None)
+b3 = Book("Jane Eyre", "Charlotte Brontë", "On Shelf", 5, None)
+b4 = Book("Pride and Prejudice", "Jane Austen", "On Shelf", 7, None)
+b5 = Book("The Book Thief", "Markus Zusak", "On Shelf", 9, None)
+b6 = Book("Animal Farm", "George Orwell", "On Shelf", 10, None)
+b7 = Book("Fahrenheit 451", "Ray Bradbury", "On Shelf", 10, None)
+b8 = Book("The Catcher in the Rye", "JD Salinger", "On Shelf", 5, None)
+b9 = Book("A Game of Thrones", "George R.R. Martin", "On Shelf", 6, None)
+b10 = Book("The Odyssey", "Homer", "On Shelf", 6, None)
+b11 = Book("A Tale of Two Cities", "Charles Dickens", "On Shelf", 8, None)
+b12 = Book("Great Expectations", "Charles Dickens", "On Shelf", 10, None)
 
 
 
@@ -13,20 +54,21 @@ b2 = Book("Macbeth", "William Shakespeare", "On Shelf", 8, None)
 # Program Functions
 # ==================================================================================================================== #
 
-def search():
+def search(book_list):
     print("\nBooks List:")
     for books in book_list:
         print(books)
         print()
     user_input_valid = False
     while not user_input_valid:
+        book_selection = []
         user_input = input("Please enter search term: > ")
         print()
         for books in book_list:
-            if user_input.capitalize() in books.title or user_input in books.author:
+            if user_input.capitalize() in books.title or user_input.capitalize() in books.author:
                 print(books)
                 print()
-                book_selection = books
+                book_selection.append(books)
                 user_input_valid = True
             else:
                 continue
@@ -42,7 +84,7 @@ def checkout(book):
         book.status = "Checked Out"
         book.set_due_date()
         book.degrade()
-        print(f"{book_selection1.title} has been checked out! Your due date is: {book_selection1.due_date}")
+        print(f"{book_selection3[0].title} has been checked out! Your due date is: {book_selection3[0].due_date}\n")
 
 
 def return_book():
@@ -57,7 +99,7 @@ def return_book():
     while not user_input_valid:
         user_input = input("Please select your book by title or author: > ")
         for books in book_list:
-            if user_input.capitalize() in books.title or user_input in books.author:
+            if user_input.capitalize() in books.title or user_input.capitalize() in books.author:
                 print(books)
                 print()
                 book_selection2 = books
@@ -72,6 +114,7 @@ def return_book():
             book_list.remove(book)
             print("Your book has been recycled!\n")
         else:
+            return_list.remove(book)
             book.status = "On Shelf"
             book.due_date = None
             print("Your book has been returned!\n")
@@ -80,7 +123,7 @@ def return_book():
 # ==================================================================================================================== #
 # Main Program Start
 # ==================================================================================================================== #
-book_list = [b1, b2]
+book_list = [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12]
 return_list = []
 
 print("Welcome to the GC Library Terminal")
@@ -90,12 +133,17 @@ user_continue = True
 while user_continue:
     input_user = input("What would you like to do today? (Search & Checkout, Return, Exit) ")
     if "search" in input_user.lower():
-        book_selection1 = search()
+        book_selection1 = search(book_list)
+        if len(book_selection1) > 1:
+            print("Multiple books have been found! Please select your book by title:")
+            book_selection3 = search(book_selection1)
+        else:
+            continue
         checkout_flag = False
         while not checkout_flag:
             checkout_yn = input("Would you like to try to checkout this book? (y/n) > ")
             if checkout_yn == 'y':
-                checkout(book_selection1)
+                checkout(book_selection1[0])
                 checkout_flag = True
             elif checkout_yn == 'n':
                 checkout_flag = True
