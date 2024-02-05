@@ -15,7 +15,7 @@ class Book:
         self.due_date = due_date
 
     def set_due_date(self):
-        self.due_date = datetime.now()+timedelta(days=14)
+        self.due_date = (datetime.now()+timedelta(days=14)).strftime('%d-%m-%Y')
 
     def degrade(self):
         degrade_num=rand.randint(1, 5)
