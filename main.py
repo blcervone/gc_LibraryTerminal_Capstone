@@ -49,7 +49,6 @@ b11 = Book("A Tale of Two Cities", "Charles Dickens", "On Shelf", 8, None)
 b12 = Book("Great Expectations", "Charles Dickens", "On Shelf", 10, None)
 
 
-
 # ==================================================================================================================== #
 # Program Functions
 # ==================================================================================================================== #
@@ -120,9 +119,18 @@ def return_book():
             print("Your book has been returned!\n")
 
 
+def add_book():
+    title = input("What is the book title? > ")
+    author = input("What is the book's author? > ")
+    new_book = Book(title, author, "On Shelf", 10, None)
+    book_list.append(new_book)
+    print("\nBook has been added!")
+
 # ==================================================================================================================== #
 # Main Program Start
 # ==================================================================================================================== #
+
+
 book_list = [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12]
 return_list = []
 
@@ -131,7 +139,7 @@ input_user = " "
 user_continue = True
 
 while user_continue:
-    input_user = input("What would you like to do today? (Search & Checkout, Return, Exit) ")
+    input_user = input("What would you like to do today? (Search & Checkout, Return, Add, Exit) ")
     if "search" in input_user.lower():
         book_selection1 = search(book_list)
         if len(book_selection1) > 1:
@@ -151,6 +159,8 @@ while user_continue:
                 print("Invalid Input")
     elif input_user.lower() == "return":
         return_book()
+    elif input_user.lower() == "add":
+        add_book()
     elif input_user.lower() == "exit":
         user_continue = False
     else:
