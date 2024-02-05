@@ -15,12 +15,12 @@ class Book:
         self.due_date = due_date
 
     def set_due_date(self):
-        self.due_date = (datetime.now()+timedelta(days=14)).strftime('%d-%m-%Y')
+        self.due_date = (datetime.now()+timedelta(days=14)).strftime('%m-%d-%Y')
 
     def degrade(self):
         degrade_num=rand.randint(1, 5)
         self.condition -= degrade_num
 
     def __str__(self):
-        return f'Title:{self.title} \nAuthor: {self.author} \nStatus: {self.status} \nCondition: {self.condition} \nDue Date: {self.due_date}'
+        return f'Title: {self.title} \nAuthor: {self.author} \nStatus: {self.status} \nCondition: {self.condition} \nDue Date: {self.due_date}'
 
