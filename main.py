@@ -14,15 +14,18 @@ b2 = Book("Macbeth", "William Shakespeare", "On Shelf", 8, None)
 # ==================================================================================================================== #
 
 def search():
+    print("\nBooks List:")
     for books in book_list:
         print(books)
-    print()
+        print()
     user_input_valid = False
     while not user_input_valid:
         user_input = input("Please enter search term: > ")
+        print()
         for books in book_list:
-            if user_input in books.title or user_input in books.author:
+            if user_input.capitalize() in books.title or user_input in books.author:
                 print(books)
+                print()
                 book_selection = books
                 user_input_valid = True
             else:
@@ -39,21 +42,24 @@ def checkout(book):
         book.status = "Checked Out"
         book.set_due_date()
         book.degrade()
+        print(f"{book_selection1.title} has been checked out! Your due date is: {book_selection1.due_date}")
 
 
 def return_book():
-    print("Check Out Books List:")
+    print("Check Out Books List:\n")
     for books in book_list:
         if books.status == "Checked Out":
             print(books)
+            print()
         else:
             continue
     user_input_valid = False
     while not user_input_valid:
         user_input = input("Please select your book by title or author: > ")
         for books in book_list:
-            if user_input in books.title or user_input in books.author:
+            if user_input.capitalize() in books.title or user_input in books.author:
                 print(books)
+                print()
                 book_selection2 = books
                 user_input_valid = True
             else:
@@ -64,9 +70,11 @@ def return_book():
             book.status = "Recycled"
             return_list.remove(book)
             book_list.remove(book)
+            print("Your book has been recycled!\n")
         else:
             book.status = "On Shelf"
             book.due_date = None
+            print("Your book has been returned!\n")
 
 
 # ==================================================================================================================== #
@@ -80,7 +88,7 @@ input_user = " "
 user_continue = True
 
 while user_continue:
-    input_user = input("What would you like to do today? (Search & Checkout, Return) ")
+    input_user = input("What would you like to do today? (Search & Checkout, Return, Exit) ")
     if "search" in input_user.lower():
         book_selection1 = search()
         checkout_flag = False
@@ -88,7 +96,6 @@ while user_continue:
             checkout_yn = input("Would you like to try to checkout this book? (y/n) > ")
             if checkout_yn == 'y':
                 checkout(book_selection1)
-                print(f"{book_selection1.title} has been checked out! Your due date is: {book_selection1.due_date}")
                 checkout_flag = True
             elif checkout_yn == 'n':
                 checkout_flag = True
@@ -96,10 +103,8 @@ while user_continue:
                 print("Invalid Input")
     elif input_user.lower() == "return":
         return_book()
+    elif input_user.lower() == "exit":
+        user_continue = False
     else:
         print("Invalid Input, please try again")
-
-print(book_list)
-print()
-print(return_list)
 
