@@ -22,5 +22,5 @@ class Book:
         self.condition -= degrade_num
 
     def __str__(self):
-        return f'Title: {self.title} \nAuthor: {self.author} \nStatus: {self.status} \nCondition: {self.condition} \nDue Date: {self.due_date}'
+        return f'-\tTitle: {self.title}\n \tAuthor: {self.author}\n \tStatus: {self.status}'
 

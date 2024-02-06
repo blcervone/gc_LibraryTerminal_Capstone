@@ -83,7 +83,7 @@ def checkout(book):
         book.status = "Checked Out"
         book.set_due_date()
         book.degrade()
-        print(f"{book_selection3[0].title} has been checked out! Your due date is: {book_selection3[0].due_date}\n")
+        print(f"{book.title} has been checked out! Your due date is: {book.due_date}\n")
 
 
 def return_book():
@@ -145,14 +145,19 @@ while user_continue:
         if len(book_selection1) > 1:
             print("Multiple books have been found! Please select your book by title:")
             book_selection3 = search(book_selection1)
+            book_selection_tf = True
         else:
-            continue
+            book_selection_tf = False
         checkout_flag = False
         while not checkout_flag:
             checkout_yn = input("Would you like to try to checkout this book? (y/n) > ")
             if checkout_yn == 'y':
-                checkout(book_selection1[0])
-                checkout_flag = True
+                if not book_selection_tf:
+                    checkout(book_selection1[0])
+                    checkout_flag = True
+                else:
+                    checkout(book_selection3[0])
+                    checkout_flag = True
             elif checkout_yn == 'n':
                 checkout_flag = True
             else:
