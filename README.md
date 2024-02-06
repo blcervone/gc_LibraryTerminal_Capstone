@@ -1,1 +1,7 @@
-# gc_LibraryTerminal_Capstone
+# Grand Circus - Python Fundamentals Capstone Project - Library Terminal
+
+This project tested all of our Python Fundamental skills. From class definitions, inheritance, and polymorphism to nested loops, this project required us to show all of the skills we have learned so far. We also applied an AGILE working methodology, specifically SCRUM methodology to work with a partner on this project. Implementing a SCRUM methodology helped immensly when working in a group. The project itself is code for a self-service terminal at a library. It allows you to search the library catalog, checkout books, return books, and add books to the library catalog.
+
+The most challening parts of this project were figuring out the main program logic and adjusting to coding in a true group environment. Pseudocode helped a ton in figuring out the main program logic and pair programming parts of it really helped to make sure we were writing efficient code. The SCRUM methodology requires tasks to be broken in to prioritized order and assigned to each group memeber. This means an individual developer does not touch all of the code, only their tasks. That was an adjustment for all members of our group, as we are used to working solo and touching all the code of the programs we write. This methodology requires trust and teamwork, which took some time in the beginning to develop.
+
+To run this program, go to the main.py file and run it. Do not run the Book.py file as that only contains the class definition and not the main program functionality.
