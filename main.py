@@ -37,7 +37,7 @@ from Book import *
 
 b1 = Book("Of Mice and Men", "John Steinbeck", "On Shelf", 10, None)
 b2 = Book("Macbeth", "William Shakespeare", "On Shelf", 8, None)
-b3 = Book("Jane Eyre", "Charlotte Brontë", "On Shelf", 5, None)
+b3 = Book("Jane Eyre", "Charlotte Brontë", "On Shelf", 2, None)
 b4 = Book("Pride and Prejudice", "Jane Austen", "On Shelf", 7, None)
 b5 = Book("The Book Thief", "Markus Zusak", "On Shelf", 9, None)
 b6 = Book("Animal Farm", "George Orwell", "Checked Out", 10, "02-10-2024")
